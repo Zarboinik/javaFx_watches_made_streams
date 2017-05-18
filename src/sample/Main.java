@@ -1,24 +1,21 @@
 package sample;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class Main {
     public static void main(String[] args) {
-        JFrame myWindow = new JFrame("Multithreading");
-        myWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        myWindow.setSize(400, 300);
-        myWindow.setVisible(true);
-        JPanel panel = new JPanel();
-        JLabel jLabel1 = new JLabel();
+        NewJFrame newJFrame = new NewJFrame();
+        newJFrame.setVisible(true);
+        JLabel jLabel1 = newJFrame.getjLabel1();
         Thread t1 = new Thread(new ThreadForLabel(jLabel1, 100));
         t1.start();
-        panel.setLayout(new FlowLayout());
-        panel.add(jLabel1);
-        JLabel jLabel2 = new JLabel();
-        Thread t2 = new Thread(new ThreadForLabel(jLabel2, 10000));
+        JLabel jLabel2 = newJFrame.getjLabel2();
+        Thread t2 = new Thread(new ThreadForLabel(jLabel2, 1000));
         t2.start();
-        panel.add(jLabel2);
-        myWindow.setContentPane(panel);
+        JLabel jLabel3 = newJFrame.getjLabel3();
+        Thread t3 = new Thread(new ThreadForLabel(jLabel3, 10000));
+        t3.start();
+        JButton jButton = newJFrame.getjButton1();
+        jButton.addActionListener(e -> newJFrame.dispose());
     }
 }
