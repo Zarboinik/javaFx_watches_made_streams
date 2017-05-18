@@ -11,12 +11,12 @@ public class Main {
         myWindow.setVisible(true);
         JPanel panel = new JPanel();
         JLabel jLabel1 = new JLabel();
-        Thread t1 = new Thread(new ThreadForLabel(jLabel1));
+        Thread t1 = new Thread(new ThreadForLabel(jLabel1, 100));
         t1.start();
         panel.setLayout(new FlowLayout());
         panel.add(jLabel1);
         JLabel jLabel2 = new JLabel();
-        Thread t2 = new Thread(new ThreadForLabel2(jLabel2));
+        Thread t2 = new Thread(new ThreadForLabel(jLabel2, 10000));
         t2.start();
         panel.add(jLabel2);
         myWindow.setContentPane(panel);

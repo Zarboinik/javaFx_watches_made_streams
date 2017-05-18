@@ -6,9 +6,12 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class ThreadForLabel implements Runnable {
-    JLabel jLabel = new JLabel();
+    private JLabel jLabel;
+    private  int timeout;
+    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
 
-    public ThreadForLabel(JLabel jLabel) {
+    public ThreadForLabel(JLabel jLabel, int timeout) {
+        this.timeout = timeout;
         this.jLabel = jLabel;
     }
 
@@ -16,10 +19,9 @@ public class ThreadForLabel implements Runnable {
     public void run() {
         while (true) {
             Calendar time = Calendar.getInstance();
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
             jLabel.setText(simpleDateFormat.format(time.getTime()));
             try {
-                Thread.sleep(1000);
+                Thread.sleep(timeout);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
